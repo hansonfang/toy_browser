@@ -1,0 +1,22 @@
+{
+  "name": "toy_browser",
+  "version": "1.0.0",
+  "description": "跟着winter老师从0实现一个玩具浏览器",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hansonfang/toy_browser.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hansonfang/toy_browser/issues"
+  },
+  "homepage": "https://github.com/hansonfang/toy_browser#readme",
+  "dependencies": {
+    "css": "^3.0.0"
+  }
+}

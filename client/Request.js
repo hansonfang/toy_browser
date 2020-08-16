@@ -10,7 +10,7 @@ module.exports = class Request{
         this.body = options.body || {};
         this.headers = Object.assign({
             'Content-Type': 'application/x-www-form-urlencoded',
-        }, options.headers)
+        }, options.headers);
 
         if(this.headers['Content-Type'] === 'application/json'){
             this.bodyText = JSON.stringify(this.body);
@@ -31,12 +31,10 @@ module.exports = class Request{
                     port: this.port
                 }, ()=>{
                     const reqbody = this.toString();
-                    console.log(reqbody);
                     connection.write(reqbody);
-                })
+                });
             }
             connection.on('data', (data) => {
-                console.log(data.toString());
                 parser.receive(data.toString());
                 if(parser.isFinished){
                     resolve(parser.response);
@@ -46,12 +44,12 @@ module.exports = class Request{
             connection.on('error', (err) => {
                 reject(err);
                 connection.end();
-            })
-        })
+            });
+        });
     }
 
     toString(){
         const head = (Object.keys(this.headers).map(key => `${key}: ${this.headers[key]}`)).join('\r\n');
-        return `${this.method} ${this.path} HTTP/1.1\r\n${head}\r\n\n${this.bodyText}`
+        return `${this.method} ${this.path} HTTP/1.1\r\n${head}\r\n\n${this.bodyText}`;
     }
-}
+};

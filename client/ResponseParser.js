@@ -1,4 +1,4 @@
-const ChunkedBodyParser = require('./ChunkedBodyParser.js')
+const ChunkedBodyParser = require('./ChunkedBodyParser.js');
 
 class ResponseParser{
     constructor(){
@@ -17,6 +17,7 @@ class ResponseParser{
         this.headerName = '';
         this.headerValue = '';
         this.bodyParser = null;
+        this.body = '';
     }
     get isFinished(){
         return this.bodyParser && this.bodyParser.isFinished;
@@ -28,11 +29,11 @@ class ResponseParser{
             statusText: RegExp.$2,
             headers: this.headers,
             body: this.bodyParser.content.join('')
-        }
+        };
     }
     receive(string){
         for(let i = 0;i < string.length; i++){
-            this.receiveChar(string.charAt(i))
+            this.receiveChar(string.charAt(i));
         }
     }
     receiveChar(char){
@@ -78,7 +79,7 @@ class ResponseParser{
                 this.current = this.WAITING_BODY;
             }
         }else if(this.current === this.WAITING_BODY){
-            console.log(char);
+            this.bodyParser.receiveChar(char);
         }
     }
 }

@@ -16,7 +16,7 @@ module.exports = class ChunkedBodyParser {
             if(char === '\r'){
                 if(this.length === 0)
                     this.isFinished = true;
-                this.current = this.WAITING_NEW_LINE_END;
+                this.current = this.WAITING_LENGTH_LINE_END;
             }else{
                 this.length *= 16; // length 16进制
                 this.length += parseInt(char, 16);
@@ -41,4 +41,4 @@ module.exports = class ChunkedBodyParser {
             }
         }
     }
-}
+};
